@@ -11,7 +11,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  provider            = azurerm.hub_subscription
+ // provider            = azurerm.hub_subscription
   name                = var.vnet_name
   resource_group_name = data.azurerm_resource_group.vnet.name
   location            = var.vnet_location != null ? var.vnet_location : data.azurerm_resource_group.vnet.location
