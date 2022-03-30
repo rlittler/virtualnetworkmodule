@@ -1,6 +1,6 @@
 //Azure Generic vNet Module
 data "azurerm_resource_group" "vnet" {
-  //provider = var.hub_subcription
+  provider = var.hub_subcription
   name = var.resource_group_name
 }
 
@@ -11,7 +11,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_virtual_network" "vnet" {
- // provider            = azurerm.hub_subscription
+  provider            = azurerm.hub_subscription
   name                = var.vnet_name
   resource_group_name = data.azurerm_resource_group.vnet.name
   location            = var.vnet_location != null ? var.vnet_location : data.azurerm_resource_group.vnet.location
@@ -21,7 +21,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  //provider = var.hub_subcription
+  provider = var.hub_subcription
   count                                          = length(var.subnet_names)
   name                                           = var.subnet_names[count.index]
   resource_group_name                            = data.azurerm_resource_group.vnet.name
